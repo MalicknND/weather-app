@@ -20,6 +20,9 @@ function App() {
 
   return (
     <div className="App">
+      <div class="hero-image">
+        <div class="hero-text"></div>
+      </div>
       <div className="search">
         <input
           value={location}
@@ -28,6 +31,9 @@ function App() {
           placeholder="Enter Location"
           type="text"
         />
+        <div class="btn-group">
+          <button onClick={searchLocation}>Rechercher</button>
+        </div>
       </div>
       <div className="container">
         <div className="top">
