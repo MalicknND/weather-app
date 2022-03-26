@@ -31,9 +31,7 @@ function App() {
           placeholder="Enter Location"
           type="text"
         />
-        <div class="btn-group">
-          <button onClick={searchLocation}>Rechercher</button>
-        </div>
+        <button>Search</button>
       </div>
       <div className="container">
         <div className="top">
@@ -67,6 +65,12 @@ function App() {
           </div>
         )}
       </div>
+      <p className="Footer">
+        Made by <br />
+        <a href="https://github.com/MalicknND" target="_blank" rel="noreferrer">
+          Malick Siguy NDIAYE
+        </a>
+      </p>
     </div>
   );
 }
