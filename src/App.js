@@ -31,7 +31,7 @@ function App() {
           placeholder="Enter Location"
           type="text"
         />
-        <button>Search</button>
+        <button onClick={searchLocation}>Search</button>
       </div>
       <div className="container">
         <div className="top">
