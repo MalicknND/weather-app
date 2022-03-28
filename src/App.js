@@ -6,33 +6,49 @@ function App() {
   const [data, setData] = useState({});
   const [location, setLocation] = useState("");
 
-  const url = `https://api.openweathermap.org/data/2.5/weather?q=${location}&appid=6e680332d92c2a7b05700e2176fd2f71`;
+  const apiKey = "6e680332d92c2a7b05700e2176fd2f71";
+  const url = `https://api.openweathermap.org/data/2.5/weather?q=${location}&appid=${apiKey}`;
 
-  const searchLocation = (event) => {
-    if (event.key === "Enter") {
-      axios.get(url).then((response) => {
+  async function searchLocation(e) {
+    e.preventDefault();
+
+    try {
+      const response = await axios.get(url);
+      if (response.status === 200) {
         setData(response.data);
         console.log(response.data);
-      });
+        console.log("OK");
+      } else {
+        console.log("Error!");
+      }
+
       setLocation("");
+      console.log(response);
+    } catch (e) {
+      console.log(e);
     }
-  };
+  }
 
   return (
     <div className="App">
       <div class="hero-image">
         <div class="hero-text"></div>
       </div>
-      <div className="search">
-        <input
-          value={location}
-          onChange={(event) => setLocation(event.target.value)}
-          onKeyPress={searchLocation}
-          placeholder="Enter Location"
-          type="text"
-        />
-        <button onClick={searchLocation}>Search</button>
-      </div>
+      <form onKeyDown={(e) => {
+        if (e.key === "Enter") {
+          e.preventDefault();
+          searchLocation(e);
+        }
+      }}>
+        <div className="search">
+          <input
+            onChange={(e) => setLocation(e.target.value)}
+            placeholder="Enter Location"
+            type="text"
+          />
+          <button onClick={(e) => searchLocation(e)} type="submit">Search</button>
+        </div>
+      </form>
       <div className="container">
         <div className="top">
           <div className="location">
